@@ -5,8 +5,12 @@ title[0].style.fontSize='xx-large';
 title[0].style.color='green';
 var list= document.getElementsByClassName('list-group-item');
 list[2].style.color='green';
-for(let i=0;i<list.length;i++)
-    list[i].style.fontWeight='bold';
+
+
+var li=document.getElementsByTagName('li');
+
+for(let i=0;i<li.length;i++)
+    li[i].style.fontWeight='bold';
 
 
 
