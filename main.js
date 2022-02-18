@@ -15,10 +15,18 @@ function onSubmit(e) {
 } else {
   const name=nameInput.value;
   const email=emailInput.value;
-  localStorage.setItem('Name',name);
-  localStorage.setItem('Email',email);
-  
+ // localStorage.setItem('Name',name);
+ // localStorage.setItem('Email',email);
+  let myObj={
+    Name:name,
+    Email :email
 
+  };
+  let myObj_serialized =JSON.stringify(myObj);
+  
+  localStorage.setItem('User-Details', myObj_serialized);
+  let myObj_deserialized=JSON.parse(localStorage.getItem('User-Details'));
+  console.log(myObj_deserialized);
     // Clear fields
     nameInput.value = '';
     emailInput.value = '';
