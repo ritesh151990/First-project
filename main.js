@@ -5,6 +5,7 @@ const msg = document.querySelector('.msg');
 const userList = document.querySelector('#users');
 myForm.addEventListener('submit', onSubmit);
 
+
 function onSubmit(e) {
   e.preventDefault();
   if(nameInput.value === '' || emailInput.value === '') {
@@ -22,13 +23,42 @@ function onSubmit(e) {
     Email :email
 
   };
-  let myObj_serialized =JSON.stringify(myObj);
+
   
-  localStorage.setItem('User-Details', myObj_serialized);
-  let myObj_deserialized=JSON.parse(localStorage.getItem('User-Details'));
-  console.log(myObj_deserialized);
-    // Clear fields
-    nameInput.value = '';
-    emailInput.value = '';
+  localStorage.setItem(myObj.Email, JSON.stringify(myObj));
+       nameInput.value = '';
+      emailInput.value = '';
+     
+        
+        
+        
+      showNewUserOnScreen(myObj);
+      //var li=document.createElement('li');
+  
+      //var editButton=document.createElement('button')
+      //var deleteButton=document.createElement('button')
+
   }
 }
+const obj1= JSON.parse(localStorage.getItem('ritesh151990@gmail.com'));
+
+function showNewUserOnScreen(user) {
+
+    
+ 
+  const parentNode=document.getElementById('listOfUsers');
+  const childHTML= `<li> ${user.Name} - ${user.Email} </li>`;
+  parentNode.innerHTML =parentNode.innerHTML+ childHTML;
+}
+
+    
+document.addEventListener('DOMContentLoaded', ()=>{
+  Object.keys(localStorage).forEach((key) => {
+      stringifiedDetailsOfPeople = localStorage.getItem(key);
+      detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
+      showNewUserOnScreen(detailsOfPeople);
+      });
+});
+  
+
+

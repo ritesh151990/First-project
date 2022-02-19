@@ -51,7 +51,7 @@ newDiv1.id='Hi1';
 newDiv1.setAttribute('title','hello');
 var newDiv1Text= document.createTextNode('Hello');
 newDiv1.appendChild(newDiv1Text);
-var contain=document.querySelector('#items');
+var contain=document.querySelector('');
 console.log(contain);
 var h2=document.querySelector('ul .list-group-item');
 console.log(h2);
