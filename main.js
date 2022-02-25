@@ -23,15 +23,22 @@ function onSubmit(e) {
     Email :email
   };
 
-  
-  localStorage.setItem(myObj.Email, JSON.stringify(myObj));
-       nameInput.value = '';
-      emailInput.value = '';
+       axios.post("https://crudcrud.com/api/6aa2bbe4731347de83ae73f23f5003bf/appointmentData",myObj)
+       .then((response) =>{
+        showNewUserOnScreen(response.data);
+         console.log(response);
+       })
+       .catch((err) => {
+         console.log(err);
+       })
+  //localStorage.setItem(myObj.Email, JSON.stringify(myObj));
+       //nameInput.value = '';
+      // emailInput.value = '';
      
         
         
         
-      showNewUserOnScreen(myObj);
+     // showNewUserOnScreen(myObj);
      
 
   }
@@ -41,9 +48,10 @@ const obj1= JSON.parse(localStorage.getItem('ritesh151990@gmail.com'));
 function showNewUserOnScreen(user) {
 
   const parentNode=document.getElementById('listOfUsers');
-  const childHTML= `<li id='${user.Email}'> ${user.Name} - ${user.Email} <button onclick=editUser('${user.Name}','${user.Email}')>EDIT</button><button onclick=deleteUser('${user.Email}')>DEL</button> </li>`;
+  const childHTML= `<li id='${user.Email}'> ${user.Name} - ${user.Email} <button style='background-color:skyblue' onclick=editUser('${user.Name}','${user.Email}')>EDIT</button><button style='background-color:wheat' onclick=deleteUser('${user.Email}')>DELETE</button> </li>`;
   parentNode.innerHTML =parentNode.innerHTML+ childHTML;
-}
+  
+ }
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -70,4 +78,3 @@ function editUser(name,emailId){
    const childNodeToBeDeleted=document.getElementById(emailId);
    parentNode.removeChild(childNodeToBeDeleted);
    }
-   
