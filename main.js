@@ -55,11 +55,22 @@ function showNewUserOnScreen(user) {
 
 
 document.addEventListener('DOMContentLoaded', ()=>{
-  Object.keys(localStorage).forEach((key) => {
-      stringifiedDetailsOfPeople = localStorage.getItem(key);
-      detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
-      showNewUserOnScreen(detailsOfPeople);
-      });
+axios.get("https://crudcrud.com/api/6aa2bbe4731347de83ae73f23f5003bf/appointmentData")
+ .then((response)=>{
+   console.log(response);
+   for( var i=0; i<response.data.length;i++){
+     showNewUserOnScreen(response.data[i]);
+   }
+ })
+ .catch((err) =>{
+   console.log(err);
+ })
+
+  // Object.keys(localStorage).forEach((key) => {
+   //   stringifiedDetailsOfPeople = localStorage.getItem(key);
+     // detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
+  //    showNewUserOnScreen(detailsOfPeople);
+    //  });
 });
 function editUser(name,emailId){
      document.getElementById('name').value=name;
